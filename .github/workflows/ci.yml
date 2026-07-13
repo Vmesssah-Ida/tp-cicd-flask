@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements.txt -r requirements-dev.txt
 
       - name: Lint (ruff)
-        run: ruff check --fix .
+        run: ruff check . --fix 
 
       - name: Tests (pytest)
         run: pytest --cov=app --cov-report=term-missing
