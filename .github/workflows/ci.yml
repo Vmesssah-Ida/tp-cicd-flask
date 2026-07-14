@@ -3,7 +3,7 @@ name: CI
 # Déclencheurs : à chaque push et à chaque Pull Request
 on:
   push:
-    branches: [ "etape-4-dependances" ]
+    branches: [ "etape-5-secrets" ]
   pull_request:
 
 # Permissions minimales par défaut (bonne pratique de sécurité)
@@ -69,3 +69,15 @@ jobs:
 
       - name: Auditer les dépendances
         run: pip-audit -r requirements.txt
+  scan-secrets:
+    name: Scan de secrets (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # nécessaire pour scanner tout l'historique
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
