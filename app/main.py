@@ -46,8 +46,5 @@ def create_task():
     _tasks.append(task)
     return jsonify(task), 201
 
-import os
-
 if __name__ == "__main__":
-    host = os.environ.get("FLASK_HOST", "127.0.0.1")
-    app.run(host=host, port=8000)
+    app.run(host="0.0.0.0", port=8000)  # nosec B104 - dev/test environment only
