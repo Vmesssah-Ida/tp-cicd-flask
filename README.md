@@ -53,3 +53,9 @@ pytest --cov=app --cov-report=term-missing
 ## Auteur
 
 - Ida
+
+## Resolution de la premiere erreur causee par pytest -v
+> Il faut ajouter dans pyproject.toml les lignes suivantes :
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
