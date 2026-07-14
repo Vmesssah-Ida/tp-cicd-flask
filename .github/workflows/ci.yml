@@ -3,7 +3,7 @@ name: CI
 # Déclencheurs : à chaque push et à chaque Pull Request
 on:
   push:
-    branches: [ "etape-2-ci" ]
+    branches: [ "etape-3-bandit" ]
   pull_request:
 
 # Permissions minimales par défaut (bonne pratique de sécurité)
@@ -34,3 +34,19 @@ jobs:
 
       - name: Tests (pytest)
         run: pytest --cov=app --cov-report=term-missing
+  scan-dependances:
+    name: Scan des dépendances (pip-audit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Installer pip-audit
+        run: pip install pip-audit
+
+      - name: Auditer les dépendances
+        run: pip-audit -r requirements.txt
