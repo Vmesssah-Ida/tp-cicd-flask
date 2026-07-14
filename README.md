@@ -60,3 +60,11 @@ pytest --cov=app --cov-report=term-missing
     - retirer la ligne path dans pyproject.toml s'arreter a ... [.]
     - ecrire " run check . --fix "
  - etape 3:
+    - avec 0.0.0.0 ca ecoute partout il faut remplacer par
+```bash 
+    import os
+
+    if __name__ == "__main__":
+    host = os.environ.get("FLASK_HOST", "127.0.0.1")
+    app.run(host=host, port=8000)
+```
