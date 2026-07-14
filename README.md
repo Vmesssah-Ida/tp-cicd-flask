@@ -53,3 +53,10 @@ pytest --cov=app --cov-report=term-missing
 ## Auteur
 
 - Ida
+
+## resolutions des problemes
+ - etape 2: 
+    - il faut changer le nom de la branche
+    - retirer la ligne path dans pyproject.toml s'arreter a ... [.]
+    - ecrire " run check . --fix "
+ - etape 3:
